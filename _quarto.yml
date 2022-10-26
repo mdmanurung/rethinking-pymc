@@ -14,9 +14,13 @@ sidebar:
   style: "docked"
   search: true
   contents:
-  - section: "Rethinking"
-    contents:
-    - chapters/chapter_02.ipynb
+    - section: "Chapters"
+      contents: chapters/*
+  tools:
+    - icon: github
+      menu: 
+        - text: Source Code
+          url: https://github.com/mdmanurung/rethinking-pymc
 format:
   html:
     theme: cosmo
