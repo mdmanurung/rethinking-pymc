@@ -1,6 +1,5 @@
 ---
-title: "rethinking-pymc"
-subtitle: Statistical Rethinking 2 in PyMC
+title: "Statistical Rethinking 2 in PyMC"
 listing:
   contents: posts
   type: table
@@ -8,4 +7,6 @@ page-layout: full
 title-block-banner: false
 ---
 
-
+version 0.0.1
+*Mikhael D. Manurung*
+*2022-10-26*
