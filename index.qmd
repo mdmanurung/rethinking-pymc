@@ -1,14 +1,11 @@
 ---
 title: "rethinking-pymc"
+subtitle: Statistical Rethinking 2 in PyMC
 listing:
   contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+  type: table
 page-layout: full
-title-block-banner: true
+title-block-banner: false
 ---
 
 
