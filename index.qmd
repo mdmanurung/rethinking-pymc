@@ -7,7 +7,7 @@ page-layout: full
 title-block-banner: false
 ---
 
-**version 0.0.1** | *Mikhael D. Manurung* | *2022-10-26*
+**version 0.0.1** | [*Mikhael D. Manurung*](https://mdmanurung.rbind.io/) | *2022-10-26*
 
 ## This is my learning diary
 
