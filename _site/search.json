@@ -1,17 +1,24 @@
 [
   {
-    "objectID": "chapters/chapter_02.html",
-    "href": "chapters/chapter_02.html",
-    "title": "Statistical Rethinking 2 in PyMC",
-    "section": "",
-    "text": "Chapter 2\nThis is a test post."
-  },
-  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
     "text": "About this blog"
+  },
+  {
+    "objectID": "chapters/chapter_02.html",
+    "href": "chapters/chapter_02.html",
+    "title": "Statistical Rethinking 2 in PyMC",
+    "section": "",
+    "text": "Chapter 2\n\nimport arviz as az\nimport pymc as pm\nimport scipy.stats as stats\n\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nSEED = 42\nrng = np.random.default_rng(SEED)\n\nCode 2.1\n\nways = np.array([0, 3, 8, 9, 0])\nways / ways.sum()\n\narray([0.  , 0.15, 0.4 , 0.45, 0.  ])\n\n\nCode 2.2\n\nstats.binom.pmf(6, n=9, p=0.5)\n\n0.16406250000000003\n\n\nCode 2.3 and 2.4\n\ndef uniform_prior(grid_points):\n    return np.repeat(5, grid_points)\n\n\ndef truncated_prior(grid_points, trunc_point=0.5):\n    return (np.linspace(0, 1, grid_points) >= trunc_point).astype(int)\n\n\ndef double_exp_prior(grid_points):\n    return np.exp(-5 * abs(np.linspace(0, 1, grid_points) - 0.5))\n\n\ndef binom_post_grid_approx(prior, grid_points=5, success=6, tosses=9):\n    # define grid\n    p_grid = np.linspace(0, 1, grid_points)\n\n    # define prior\n    prior = prior(grid_points)\n\n    # compute likelihood at each point in the grid\n    likelihood = stats.binom.pmf(success, tosses, p_grid)\n\n    # compute product of likelihood and prior\n    unstd_posterior = likelihood * prior\n\n    # standardize the posterior, so it sums to 1\n    posterior = unstd_posterior / unstd_posterior.sum()\n    return p_grid, posterior\n\n\nw, n = 6, 9\n\npoints = (5, 20, 100)\n\n_, ax = plt.subplots(1, len(points), figsize=(6 * len(points), 5))\nfor idx, ps in enumerate(points):\n    p_grid, posterior = binom_post_grid_approx(uniform_prior, ps, w, n)\n    ax[idx].plot(p_grid, posterior, \"o-\", label=f\"successes = {w}\\ntosses = {n}\")\n    ax[idx].set_xlabel(\"probability of water\")\n    ax[idx].set_ylabel(\"posterior probability\")\n    ax[idx].set_title(f\"{ps} points\")\n    ax[idx].legend(loc=0)\n\n\n\n\n\n_, ax = plt.subplots(1, len(points), figsize=(6 * len(points), 5))\nfor idx, ps in enumerate(points):\n    p_grid, posterior = binom_post_grid_approx(truncated_prior, ps, w, n)\n    ax[idx].plot(p_grid, posterior, \"o-\", label=f\"successes = {w}\\ntosses = {n}\")\n    ax[idx].set_xlabel(\"probability of water\")\n    ax[idx].set_ylabel(\"posterior probability\")\n    ax[idx].set_title(f\"{ps} points\")\n    ax[idx].legend(loc=0)\n\n\n\n\n\n_, ax = plt.subplots(1, len(points), figsize=(6 * len(points), 5))\nfor idx, ps in enumerate(points):\n    p_grid, posterior = binom_post_grid_approx(double_exp_prior, ps, w, n)\n    ax[idx].plot(p_grid, posterior, \"o-\", label=f\"successes = {w}\\ntosses = {n}\")\n    ax[idx].set_xlabel(\"probability of water\")\n    ax[idx].set_ylabel(\"posterior probability\")\n    ax[idx].set_title(f\"{ps} points\")\n    ax[idx].legend(loc=0)\n\n\n\n\nCode 2.5\nCode 2.6"
+  },
+  {
+    "objectID": "exercises/chapter_02.html",
+    "href": "exercises/chapter_02.html",
+    "title": "Statistical Rethinking 2 in PyMC",
+    "section": "",
+    "text": "import arviz as az\nimport numpy as np\nimport pymc as pm\n\nfrom matplotlib import pylab as plt\nfrom scipy import stats\n\n\nRANDOM_SEED = 42\nnp.random.seed(RANDOM_SEED)\n\n\n# express the above scenarios as the number of waters in each\nW = np.array([3, 3, 5])\n# give the total number of trials\nTotal = np.array([3, 4, 7])\n\n\nfig, axs = plt.subplots(1, 3, figsize=(12,4))\n\nfor i, j, ax, ix in zip(W, Total, np.ravel(axs), range(3)):\n    p = np.linspace(0, 1, 20)\n    # compute the likelihood for each value of p, assuming 6 success and 3 fails\n    likelihood = stats.binom.pmf(k=i, n=j, p=p)\n    # prior is step function\n    prior = 1\n    # posterior\n    post = likelihood * prior\n    # normalise the posterior\n    post = post / np.sum(post)\n    ax.plot(p, post)\n    ax.scatter(p, post)\n    ax.set_title(\"Observation \" + str(ix + 1))\n    ax.set(xlabel=\"P\", ylabel=\"Posterior Probability\")\n\nfor ax in axs.flat:\n    ax.label_outer()\n\n\n\n\n\n\n\nhttps://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html\n\narray([3, 4, 7])\n\n\n\nfig, axs = plt.subplots(1, 3, figsize=(12,4))\n\nfor i, j, ax, ix in zip(W, Total, np.ravel(axs), range(3)):\n    p = np.linspace(0, 1, 20)\n    # compute the likelihood for each value of p, assuming 6 success and 3 fails\n    likelihood = stats.binom.pmf(k=i, n=j, p=p)\n    # prior is step function\n    prior = np.heaviside(p - 0.5, 0.5) * 2\n    # posterior\n    post = likelihood * prior\n    # normalise the posterior\n    post = post / np.sum(post)\n    ax.plot(p, post)\n    ax.scatter(p, post)\n    ax.set_title(\"Observation \" + str(ix + 1))\n    ax.set(xlabel=\"P\", ylabel=\"Posterior Probability\")\n\nfor ax in axs.flat:\n    ax.label_outer()\n\n\n\n\n\n!"
   },
   {
     "objectID": "index.html",
