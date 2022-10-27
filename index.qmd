@@ -16,3 +16,10 @@ I always wanted to learn Bayesian Statistics and Python. So, why not learn both 
 Note that this translation draws a lot from the [PyMC resources](https://github.com/pymc-devs/pymc-resources/tree/main/Rethinking_2) by the PyMC developers! Why make another one, you may ask. Well, because the PyMC authors have not fully migrated their code to PyMC v4, which I will use for the entire book.
 
 I hope it is useful!
+
+## Related Resources
+
+Statistical Rethinking 2 is such a fantastic book that many has shared their ports or their solutions to the exercises. Here are the ones that I find particularly useful (note that I am biased toward `R`):
+
+* [Solutions to Statistical Rethinking 2 by Erik Kusch](https://www.erikkusch.com/category/statistical-rethinking/)
+* [Richard McElreath's personal website](https://xcelab.net/rm/statistical-rethinking/)
