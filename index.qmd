@@ -23,3 +23,6 @@ Statistical Rethinking 2 is such a fantastic book that many has shared their por
 
 * [Solutions to Statistical Rethinking 2 by Erik Kusch](https://www.erikkusch.com/category/statistical-rethinking/)
 * [Richard McElreath's personal website](https://xcelab.net/rm/statistical-rethinking/)
+* [Jeffrey Girard's Blog](https://jmgirard.com/blog/)
+* [Jake Thompson's solutions](https://sr2-solutions.wjakethompson.com/)
+* [Rohit Goswami's solutions](https://rgoswami.me/posts/some-sol-sr2/)
