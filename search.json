@@ -25,6 +25,20 @@
     "href": "index.html",
     "title": "Statistical Rethinking 2 in PyMC",
     "section": "",
-    "text": "version 0.0.1 | Mikhael D. Manurung | 2022-10-26\n\n\n\n\n\n\n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "version 0.0.1 | Mikhael D. Manurung | 2022-10-26"
+  },
+  {
+    "objectID": "index.html#this-is-my-learning-diary",
+    "href": "index.html#this-is-my-learning-diary",
+    "title": "Statistical Rethinking 2 in PyMC",
+    "section": "This is my learning diary",
+    "text": "This is my learning diary\nI always wanted to learn Bayesian Statistics and Python. So, why not learn both simultaneously? So here I attempt to translate the R code from the Statistical Rethinking 2 book into Python and PyMC (+Bambi too!).\nNote that this translation draws a lot from the PyMC resources by the PyMC developers! Why make another one, you may ask. Well, because the PyMC authors have not fully migrated their code to PyMC v4, which I will use for the entire book.\nI hope it is useful!"
+  },
+  {
+    "objectID": "index.html#related-resources",
+    "href": "index.html#related-resources",
+    "title": "Statistical Rethinking 2 in PyMC",
+    "section": "Related Resources",
+    "text": "Related Resources\nStatistical Rethinking 2 is such a fantastic book that many has shared their ports or their solutions to the exercises. Here are the ones that I find particularly useful (note that I am biased toward R):\n\nSolutions to Statistical Rethinking 2 by Erik Kusch\nRichard McElreath’s personal website"
   }
 ]
