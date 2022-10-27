@@ -122,6 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.">
 </head>
@@ -206,7 +207,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#chapter-2" id="toc-chapter-2" class="nav-link active" data-scroll-target="#chapter-2">Chapter 2</a>
   <ul class="collapse">
-  <li><a href="#m2" id="toc-m2" class="nav-link" data-scroll-target="#m2">2M2</a></li>
+  <li><a href="#easy" id="toc-easy" class="nav-link" data-scroll-target="#easy">Easy</a>
+  <ul class="collapse">
+  <li><a href="#e1" id="toc-e1" class="nav-link" data-scroll-target="#e1"><strong>2E1</strong></a></li>
+  <li><a href="#e2" id="toc-e2" class="nav-link" data-scroll-target="#e2">2E2</a></li>
+  <li><a href="#e3" id="toc-e3" class="nav-link" data-scroll-target="#e3">2E3</a></li>
+  <li><a href="#e4" id="toc-e4" class="nav-link" data-scroll-target="#e4">2E4</a></li>
+  </ul></li>
+  <li><a href="#medium" id="toc-medium" class="nav-link" data-scroll-target="#medium">Medium</a>
+  <ul class="collapse">
+  <li><a href="#m1" id="toc-m1" class="nav-link" data-scroll-target="#m1">2M1</a></li>
+  </ul></li>
+  <li><a href="#m2" id="toc-m2" class="nav-link" data-scroll-target="#m2">2M2</a>
+  <ul class="collapse">
+  <li><a href="#m3" id="toc-m3" class="nav-link" data-scroll-target="#m3">2M3</a></li>
+  <li><a href="#m4" id="toc-m4" class="nav-link" data-scroll-target="#m4">2M4</a></li>
+  <li><a href="#m5" id="toc-m5" class="nav-link" data-scroll-target="#m5">2M5</a></li>
+  <li><a href="#m6" id="toc-m6" class="nav-link" data-scroll-target="#m6">2M6</a></li>
+  </ul></li>
+  <li><a href="#hard" id="toc-hard" class="nav-link" data-scroll-target="#hard">Hard</a>
+  <ul class="collapse">
+  <li><a href="#h1" id="toc-h1" class="nav-link" data-scroll-target="#h1">2H1</a></li>
+  <li><a href="#h2" id="toc-h2" class="nav-link" data-scroll-target="#h2">2H2</a></li>
+  <li><a href="#h3" id="toc-h3" class="nav-link" data-scroll-target="#h3">2H3</a></li>
+  <li><a href="#h4" id="toc-h4" class="nav-link" data-scroll-target="#h4">2H4</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -218,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="chapter-2" class="level1">
 <h1>Chapter 2</h1>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
@@ -226,77 +251,189 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pylab <span class="im">as</span> plt</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>RANDOM_SEED <span class="op">=</span> <span class="dv">42</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(RANDOM_SEED)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># express the above scenarios as the number of waters in each</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>])</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># give the total number of trials</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Total <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="easy" class="level2">
+<h2 class="anchored" data-anchor-id="easy">Easy</h2>
+<section id="e1" class="level3">
+<h3 class="anchored" data-anchor-id="e1"><strong>2E1</strong></h3>
+<p>Which of the expressions below correspond to the statement: <em>the probability of rain on Monday?</em></p>
+<ol type="1">
+<li>Pr(rain)</li>
+<li>Pr(rain|Monday)</li>
+<li>Pr(Monday|rain)</li>
+<li>Pr(rain, Monday) / Pr(Monday)</li>
+</ol>
+<p><strong>Answer</strong>: * Option 2, Pr(rain|Monday): reads as “the probability of rain, given that the day is Monday”. * Option 4, this is Bayes theorem in action! If you solve it then you will get Pr(rain|Monday) as well.</p>
+</section>
+<section id="e2" class="level3">
+<h3 class="anchored" data-anchor-id="e2">2E2</h3>
+<p>Which of the follwoing statements correspond to the expression:<span class="math inline">\(Pr(Monday|rain)\)</span>?</p>
+<ol type="1">
+<li>The probability of rain on Monday</li>
+<li>The probability of rain, given that it is Monday</li>
+<li>The probability that it is Monday, given that it is raining</li>
+<li>The probability that it is Monday and that it is raining</li>
+</ol>
+<p><strong>Answer</strong>: - Option 3, The probability that it is Monday, given that it is raining - Option 1 and 2: Pr(rain|Monday) - Option 4: Pr(rain, Monday)</p>
+</section>
+<section id="e3" class="level3">
+<h3 class="anchored" data-anchor-id="e3">2E3</h3>
+<p>Which of the expressions below correspond to the statement: the probability that it is Monday, given that it is raining?</p>
+<ol type="1">
+<li>Pr(Monday|rain)</li>
+<li>Pr(rain|Monday)</li>
+<li>Pr(rain|Monday) Pr(Monday)</li>
+<li>Pr(rain|Monday) Pr(Monday)/ Pr(rain)</li>
+<li>Pr(Monday|rain) Pr(rain)/ Pr(Monday)</li>
+</ol>
+<p><strong>Answer</strong>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="11af6214-c44e-4d49-9a30-2fd86d2e01cc" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, j, ax, ix <span class="kw">in</span> <span class="bu">zip</span>(W, Total, np.ravel(axs), <span class="bu">range</span>(<span class="dv">3</span>)):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute the likelihood for each value of p, assuming 6 success and 3 fails</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    likelihood <span class="op">=</span> stats.binom.pmf(k<span class="op">=</span>i, n<span class="op">=</span>j, p<span class="op">=</span>p)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prior is step function</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    prior <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># posterior</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> likelihood <span class="op">*</span> prior</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalise the posterior</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> post <span class="op">/</span> np.<span class="bu">sum</span>(post)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(p, post)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    ax.scatter(p, post)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Observation "</span> <span class="op">+</span> <span class="bu">str</span>(ix <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"P"</span>, ylabel<span class="op">=</span><span class="st">"Posterior Probability"</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs.flat:</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    ax.label_outer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="chapter_02_files/figure-html/cell-5-output-1.png" class="img-fluid"></p>
+</section>
+<section id="e4" class="level3">
+<h3 class="anchored" data-anchor-id="e4">2E4</h3>
+<p>The Bayesian statistician Bruno de Finetti (1906–1985) began his 1973 book on probability theory with the declaration: “PROBABILITY DOES NOT EXIST.” The capitals appeared in the original, so I imagine de Finetti wanted us to shout this statement. What he meant is that probability is a device for describing uncertainty from the perspective of an observer with limited knowledge; it has no objective reality. Discuss the globe tossing example from the chapter, in light of this statement. What does it mean to say “the probability of water is 0.7”?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+</section>
+<section id="medium" class="level2">
+<h2 class="anchored" data-anchor-id="medium">Medium</h2>
+<section id="m1" class="level3">
+<h3 class="anchored" data-anchor-id="m1">2M1</h3>
+<p>Recall the globe tossing model from the chapter. Compute and plot the grid approximate posterior distribution for each of the following sets of observations. In each case, assume a uniform prior for p.</p>
+<ol type="1">
+<li>W, W, W</li>
+<li>W, W, W, L</li>
+<li>L, W, W, L, W, W, W</li>
+</ol>
+<p><strong>Answer</strong>:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count the number of waters in each toss</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">5</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># total number of trials</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>trials <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="m2" class="level2">
-<h2 class="anchored" data-anchor-id="m2">2M2</h2>
-<div class="cell" data-outputid="d6528ef4-0102-4fc6-a311-45708affac70">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>https:<span class="op">//</span>matplotlib.org<span class="op">/</span>stable<span class="op">/</span>gallery<span class="op">/</span>subplots_axes_and_figures<span class="op">/</span>subplots_demo.html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>array([3, 4, 7])</code></pre>
-</div>
-</div>
-<div class="cell" data-outputid="a6b13ec3-700c-4ba0-c367-278949fa3873" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, j, ax, ix <span class="kw">in</span> <span class="bu">zip</span>(W, Total, np.ravel(axs), <span class="bu">range</span>(<span class="dv">3</span>)):</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute the likelihood for each value of p, assuming 6 success and 3 fails</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    likelihood <span class="op">=</span> stats.binom.pmf(k<span class="op">=</span>i, n<span class="op">=</span>j, p<span class="op">=</span>p)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prior is step function</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    prior <span class="op">=</span> np.heaviside(p <span class="op">-</span> <span class="fl">0.5</span>, <span class="fl">0.5</span>) <span class="op">*</span> <span class="dv">2</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># posterior</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> likelihood <span class="op">*</span> prior</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalise the posterior</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> post <span class="op">/</span> np.<span class="bu">sum</span>(post)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    ax.plot(p, post)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    ax.scatter(p, post)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"Observation "</span> <span class="op">+</span> <span class="bu">str</span>(ix <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"P"</span>, ylabel<span class="op">=</span><span class="st">"Posterior Probability"</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs.flat:</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    ax.label_outer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-outputid="98b081be-2501-4e8e-97aa-6100658e5955" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w, t, ax, ix <span class="kw">in</span> <span class="bu">zip</span>(water, trials, np.ravel(axs), <span class="bu">range</span>(<span class="dv">3</span>)):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># parameter grid</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    p_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute the likelihood for each value of p, assuming 6 success and 3 fails</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    likelihood <span class="op">=</span> stats.binom.pmf(k<span class="op">=</span>w, n<span class="op">=</span>t, p<span class="op">=</span>p_grid)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># uniform prior</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    prior <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># posterior</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> likelihood <span class="op">*</span> prior</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalise the posterior</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> post <span class="op">/</span> np.<span class="bu">sum</span>(post)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    ax.plot(p_grid, post)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    ax.scatter(p_grid, post)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>w<span class="sc">}</span><span class="ss"> Water / </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> Trials"</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"P"</span>, ylabel<span class="op">=</span><span class="st">"Posterior Probability"</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs.flat:</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    ax.label_outer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="chapter_02_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="m2" class="level2">
+<h2 class="anchored" data-anchor-id="m2">2M2</h2>
+<div class="cell" data-outputid="a23fd4c4-a85f-4922-bba1-fc8fb4de8586" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> w, t, ax, ix <span class="kw">in</span> <span class="bu">zip</span>(water, trials, np.ravel(axs), <span class="bu">range</span>(<span class="dv">3</span>)):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    p_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">20</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute the likelihood for each value of p, assuming 6 success and 3 fails</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    likelihood <span class="op">=</span> stats.binom.pmf(k<span class="op">=</span>w, n<span class="op">=</span>t, p<span class="op">=</span>p_grid)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># step function prior</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    prior <span class="op">=</span> (p_grid <span class="op">&gt;=</span> <span class="fl">0.5</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># posterior</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> likelihood <span class="op">*</span> prior</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># normalise the posterior</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    post <span class="op">=</span> post <span class="op">/</span> np.<span class="bu">sum</span>(post)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># plot</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    ax.plot(p_grid, post)</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    ax.scatter(p_grid, post)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="ss">f"</span><span class="sc">{</span>w<span class="sc">}</span><span class="ss"> Water / </span><span class="sc">{</span>t<span class="sc">}</span><span class="ss"> Trials"</span>)</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    ax.<span class="bu">set</span>(xlabel<span class="op">=</span><span class="st">"P"</span>, ylabel<span class="op">=</span><span class="st">"Posterior Probability"</span>)</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> ax <span class="kw">in</span> axs.flat:</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    ax.label_outer()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter_02_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
+</div>
+<section id="m3" class="level3">
+<h3 class="anchored" data-anchor-id="m3">2M3</h3>
+<p>Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water. The Mars globe is 100% land. Further suppose that one of these globes—you don’t know which—was tossed in the air and produced a “land” observation. Assume that each globe was equally likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on seeing “land” (Pr(Earth|land)), is 0.23.</p>
+<p><strong>Answer</strong>:</p>
+</section>
+<section id="m4" class="level3">
+<h3 class="anchored" data-anchor-id="m4">2M4</h3>
+<p>Suppose you have a deck with only three cards. Each card has two sides, and each side is either black or white. One card has two black sides. The second card has one black and one white side. The third card has two white sides. Now suppose all three cards are placed in a bag and shuffled. Someone reaches into the bag and pulls out a card and places it flat on a table. A black side is shown facing up, but you don’t know the color of the side facing down. Show that the probability that the other side is also black is 2/3. Use the counting method (Section 2 of the chapter) to approach this problem. This means counting up the ways that each card could produce the observed data (a black side facing up on the table).</p>
+<p><strong>Answer</strong>:</p>
+</section>
+<section id="m5" class="level3">
+<h3 class="anchored" data-anchor-id="m5">2M5</h3>
+<p>Now suppose there are four cards: B/B, B/W, W/W, and another B/B. Again suppose a card is drawn from the bag and a black side appears face up. Again calculate the probability that the other side is black.</p>
+<p><strong>Answer</strong>:</p>
+</section>
+<section id="m6" class="level3">
+<h3 class="anchored" data-anchor-id="m6">2M6</h3>
+<p>Imagine that black ink is heavy, and so cards with black sides are heavier than cards with white sides. As a result, it’s less likely that a card with black sides is pulled from the bag. So again assume there are three cards: B/B, B/W, and W/W. After experimenting a number of times, you conclude that for every way to pull the B/B card from the bag, there are 2 ways to pull the B/W card and 3 ways to pull the W/W card. Again suppose that a card is pulled and a black side appears face up. Show that the probability the other side is black is now 0.5. Use the counting method, as before.</p>
+<p><strong>Answer</strong>:</p>
+<p>###2M7</p>
+<p>Assume again the original card problem, with a single card showing a black side face up. Before looking at the other side, we draw another card from the bag and lay it face up on the table. The face that is shown on the new card is white. Show that the probability that the first card, the one showing a black side, has black on its other side is now 0.75. Use the counting method, if you can. Hint: Treat this like the sequence of globe tosses, counting all the ways to see each observation, for each possible first card.</p>
+<p><strong>Answer</strong>:</p>
+</section>
+</section>
+<section id="hard" class="level2">
+<h2 class="anchored" data-anchor-id="hard">Hard</h2>
+<section id="h1" class="level3">
+<h3 class="anchored" data-anchor-id="h1">2H1</h3>
+<p>Suppose there are two species of panda bear. Both are equally common in the wild and live in the same places. They look exactly alike and eat the same food, and there is yet no genetic assay capable of telling them apart. They differ however in their family sizes. Species A gives birth to twins 10% of the time, otherwise birthing a single infant. Species B births twins 20% of the time, otherwise birthing singleton infants. Assume these numbers are known with certainty, from many years of field research.</p>
+<p>Now suppose you are managing a captive panda breeding program. You have a new female panda of unknown species, and she has just given birth to twins. What is the probability that her next birth will also be twins?</p>
+<p><strong>Answer:</strong></p>
+</section>
+<section id="h2" class="level3">
+<h3 class="anchored" data-anchor-id="h2">2H2</h3>
+<p>Recall all the facts from the problem above. Now compute the probability that the panda we have is from species A, assuming we have observed only the first birth and that it was twins.</p>
+<p><strong>Answer</strong>:</p>
+</section>
+<section id="h3" class="level3">
+<h3 class="anchored" data-anchor-id="h3">2H3</h3>
+<p>Continuing on from the previous problem, suppose the same panda mother has a second birth and that it is not twins, but a singleton infant. Compute the posterior probability that this panda is species A</p>
+<p><strong>Answer</strong>:</p>
+</section>
+<section id="h4" class="level3">
+<h3 class="anchored" data-anchor-id="h4">2H4</h3>
+<p>A common boast of Bayesian statisticians is that Bayesian inference makes it easy to use all of the data, even if the data are of different types. So suppose now that a veterinarian comes along who has a new genetic test that she claims can identify the species of our mother panda. But the test, like all tests, is imperfect. This is the information you have about the test: • The probability it correctly identifies a species A panda is 0.8. • The probability it correctly identifies a species B panda is 0.65. The vet administers the test to your panda and tells you that the test is positive for species A. First ignore your previous information from the births and compute the posterior probability that your panda is species A. Then redo your calculation, now using the birth data as well.</p>
+<p><strong>Answer</strong>:</p>
 
 
+</section>
 </section>
 </section>
 
