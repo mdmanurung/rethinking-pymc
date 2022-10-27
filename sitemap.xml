@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mdmanurung.github.io/rethinking-pymc/chapters/chapter_02.html</loc>
-    <lastmod>2022-10-27T08:46:31.750Z</lastmod>
-  </url>
-  <url>
     <loc>https://mdmanurung.github.io/rethinking-pymc/about.html</loc>
-    <lastmod>2022-10-27T08:46:31.990Z</lastmod>
+    <lastmod>2022-10-27T11:11:20.039Z</lastmod>
   </url>
   <url>
-    <loc>https://mdmanurung.github.io/rethinking-pymc/index.html</loc>
-    <lastmod>2022-10-27T08:46:32.220Z</lastmod>
+    <loc>https://mdmanurung.github.io/rethinking-pymc/chapters/chapter_02.html</loc>
+    <lastmod>2022-10-27T11:11:20.645Z</lastmod>
   </url>
   <url>
     <loc>https://mdmanurung.github.io/rethinking-pymc/exercises/chapter_02.html</loc>
-    <lastmod>2022-10-27T08:46:32.500Z</lastmod>
+    <lastmod>2022-10-27T11:11:21.213Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mdmanurung.github.io/rethinking-pymc/index.html</loc>
+    <lastmod>2022-10-27T11:11:21.767Z</lastmod>
   </url>
 </urlset>
