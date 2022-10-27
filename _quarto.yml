@@ -15,9 +15,9 @@ website:
     search: true
     contents:
       - section: Chapters
-        contents: chapters/*
-      - section: "Exercises"
-        contents: exercises/*
+        contents: "chapters/*.ipynb"
+      - section: Exercises
+        contents: "exercises/*.ipynb"
     tools:
       - icon: github
         menu: 
