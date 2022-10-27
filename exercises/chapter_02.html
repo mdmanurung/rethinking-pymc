@@ -217,9 +217,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#medium" id="toc-medium" class="nav-link" data-scroll-target="#medium">Medium</a>
   <ul class="collapse">
   <li><a href="#m1" id="toc-m1" class="nav-link" data-scroll-target="#m1">2M1</a></li>
-  </ul></li>
-  <li><a href="#m2" id="toc-m2" class="nav-link" data-scroll-target="#m2">2M2</a>
-  <ul class="collapse">
+  <li><a href="#m2" id="toc-m2" class="nav-link" data-scroll-target="#m2">2M2</a></li>
   <li><a href="#m3" id="toc-m3" class="nav-link" data-scroll-target="#m3">2M3</a></li>
   <li><a href="#m4" id="toc-m4" class="nav-link" data-scroll-target="#m4">2M4</a></li>
   <li><a href="#m5" id="toc-m5" class="nav-link" data-scroll-target="#m5">2M5</a></li>
@@ -241,6 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
+<p><a href="https://colab.research.google.com/github/mdmanurung/rethinking-pymc/blob/main/exercises/chapter_02.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a></p>
 <section id="chapter-2" class="level1">
 <h1>Chapter 2</h1>
 <div class="cell" data-execution_count="4">
@@ -352,9 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
-<section id="m2" class="level2">
-<h2 class="anchored" data-anchor-id="m2">2M2</h2>
+<section id="m2" class="level3">
+<h3 class="anchored" data-anchor-id="m2">2M2</h3>
 <div class="cell" data-outputid="a23fd4c4-a85f-4922-bba1-fc8fb4de8586" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">4</span>))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -385,6 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="chapter_02_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+</section>
 <section id="m3" class="level3">
 <h3 class="anchored" data-anchor-id="m3">2M3</h3>
 <p>Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water. The Mars globe is 100% land. Further suppose that one of these globes—you don’t know which—was tossed in the air and produced a “land” observation. Assume that each globe was equally likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on seeing “land” (Pr(Earth|land)), is 0.23.</p>
