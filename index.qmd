@@ -8,3 +8,11 @@ title-block-banner: false
 ---
 
 **version 0.0.1** | *Mikhael D. Manurung* | *2022-10-26*
+
+## This is my learning diary
+
+I always wanted to learn Bayesian Statistics and Python. So, why not learn both simultaneously? So here I attempt to translate the R code from the Statistical Rethinking 2 book into Python and PyMC (+Bambi too!).
+
+Note that this translation draws a lot from the [PyMC resources](https://github.com/pymc-devs/pymc-resources/tree/main/Rethinking_2) by the PyMC developers! Why make another one, you may ask. Well, because the PyMC authors have not fully migrated their code to PyMC v4, which I will use for the entire book.
+
+I hope it is useful!
