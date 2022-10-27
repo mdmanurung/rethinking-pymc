@@ -121,6 +121,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.">
@@ -204,7 +207,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chapter-2" id="toc-chapter-2" class="nav-link active" data-scroll-target="#chapter-2">Chapter 2</a></li>
+  <li><a href="#chapter-2" id="toc-chapter-2" class="nav-link active" data-scroll-target="#chapter-2">Chapter 2</a>
+  <ul class="collapse">
+  <li><a href="#code-2.6" id="toc-code-2.6" class="nav-link" data-scroll-target="#code-2.6">Code 2.6</a></li>
+  <li><a href="#code-2.7" id="toc-code-2.7" class="nav-link" data-scroll-target="#code-2.7">Code 2.7</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -215,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="chapter-2" class="level1">
 <h1>Chapter 2</h1>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> arviz <span class="im">as</span> az</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pymc <span class="im">as</span> pm</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
@@ -227,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(SEED)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Code 2.1</p>
-<div class="cell" data-outputid="7abda27c-592c-4f47-d6a9-3d8bd5631c72" data-execution_count="31">
+<div class="cell" data-outputid="7abda27c-592c-4f47-d6a9-3d8bd5631c72">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ways <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">0</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ways <span class="op">/</span> ways.<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -235,14 +242,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Code 2.2</p>
-<div class="cell" data-outputid="2277a7b6-64b5-4851-d4d3-d26157ba3e5e" data-execution_count="34">
+<div class="cell" data-outputid="2277a7b6-64b5-4851-d4d3-d26157ba3e5e">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>stats.binom.pmf(<span class="dv">6</span>, n<span class="op">=</span><span class="dv">9</span>, p<span class="op">=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 <pre><code>0.16406250000000003</code></pre>
 </div>
 </div>
 <p>Code 2.3 and 2.4</p>
-<div class="cell" data-execution_count="38">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uniform_prior(grid_points):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.repeat(<span class="dv">5</span>, grid_points)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -254,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> double_exp_prior(grid_points):</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.exp(<span class="op">-</span><span class="dv">5</span> <span class="op">*</span> <span class="bu">abs</span>(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, grid_points) <span class="op">-</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="39">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binom_post_grid_approx(prior, grid_points<span class="op">=</span><span class="dv">5</span>, success<span class="op">=</span><span class="dv">6</span>, tosses<span class="op">=</span><span class="dv">9</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># define grid</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    p_grid <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, grid_points)</span>
@@ -272,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> unstd_posterior <span class="op">/</span> unstd_posterior.<span class="bu">sum</span>()</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> p_grid, posterior</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-outputid="3cbcb469-4eb4-475e-9a32-1a70e77370d4" data-execution_count="40">
+<div class="cell" data-outputid="3cbcb469-4eb4-475e-9a32-1a70e77370d4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w, n <span class="op">=</span> <span class="dv">6</span>, <span class="dv">9</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>points <span class="op">=</span> (<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">100</span>)</span>
@@ -289,7 +296,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="chapter_02_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="d994a602-8572-4d33-cb49-f7e68ead3da8" data-execution_count="42">
+<div class="cell" data-outputid="d994a602-8572-4d33-cb49-f7e68ead3da8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(points), figsize<span class="op">=</span>(<span class="dv">6</span> <span class="op">*</span> <span class="bu">len</span>(points), <span class="dv">5</span>))</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, ps <span class="kw">in</span> <span class="bu">enumerate</span>(points):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    p_grid, posterior <span class="op">=</span> binom_post_grid_approx(truncated_prior, ps, w, n)</span>
@@ -302,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="chapter_02_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-outputid="46edd822-68d7-4ab2-f44c-6124c5ddf925" data-execution_count="41">
+<div class="cell" data-outputid="46edd822-68d7-4ab2-f44c-6124c5ddf925">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>_, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="bu">len</span>(points), figsize<span class="op">=</span>(<span class="dv">6</span> <span class="op">*</span> <span class="bu">len</span>(points), <span class="dv">5</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, ps <span class="kw">in</span> <span class="bu">enumerate</span>(points):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    p_grid, posterior <span class="op">=</span> binom_post_grid_approx(double_exp_prior, ps, w, n)</span>
@@ -316,9 +323,97 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Code 2.5</p>
-<p>Code 2.6</p>
+<section id="code-2.6" class="level2">
+<h2 class="anchored" data-anchor-id="code-2.6">Code 2.6</h2>
+<p>Quadratic approximation (quap). Code taken from Ravin Kumar’s <a href="https://ravinkumar.com/pages/InferenceCheatsheet.html">cheatsheet</a>.</p>
+<div class="cell" data-outputid="903bce62-c99d-4d30-ba72-ed0cdb8fb586" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.repeat((<span class="dv">0</span>, <span class="dv">1</span>), (<span class="dv">3</span>, <span class="dv">6</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>array([0, 0, 0, 1, 1, 1, 1, 1, 1])</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="d6867bfa-ce78-42f1-cc6d-3753547d022f" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> pm.Model() <span class="im">as</span> normal_approximation:</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># prior</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    p <span class="op">=</span> pm.Uniform(<span class="st">"p"</span>, <span class="dv">0</span>, <span class="dv">1</span>) </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># likelihood</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> pm.Binomial(<span class="st">"w"</span>, n<span class="op">=</span><span class="bu">len</span>(data), p<span class="op">=</span>p, observed<span class="op">=</span>data.<span class="bu">sum</span>())</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inference</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    mean_q <span class="op">=</span> pm.find_MAP() <span class="co"># mean</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    std_q <span class="op">=</span> ((<span class="dv">1</span><span class="op">/</span>pm.find_hessian(mean_q, <span class="bu">vars</span><span class="op">=</span>[p]))<span class="op">**</span><span class="fl">0.5</span>)[<span class="dv">0</span>] <span class="co"># variance</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean, Standard deviation</span><span class="ch">\n</span><span class="st">p </span><span class="sc">{:.2}</span><span class="st">, </span><span class="sc">{:.2}</span><span class="st">"</span>.<span class="bu">format</span>(mean_q[<span class="st">"p"</span>], std_q[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    progress:not([value]), progress:not([value])::-webkit-progress-bar {
+        background: repeating-linear-gradient(45deg, #7e7e7e, #7e7e7e 10px, #5c5c5c 10px, #5c5c5c 20px);
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+
+    <div>
+      <progress value="6" class="" max="6" style="width:300px; height:20px; vertical-align: middle;"></progress>
+      100.00% [6/6 00:00&lt;00:00 logp = -1.8075, ||grad|| = 1.5]
+    </div>
+    
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Mean, Standard deviation
+p 0.67, 0.64</code></pre>
+</div>
+</div>
+<div class="cell" data-outputid="d8938c8d-918f-435f-c747-109ed2e2c73a" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the 89% percentile interval</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>norm <span class="op">=</span> stats.norm(mean_q, std_q)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> <span class="fl">0.89</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> stats.norm.ppf([(<span class="dv">1</span> <span class="op">-</span> prob) <span class="op">/</span> <span class="dv">2</span>, (<span class="dv">1</span> <span class="op">+</span> prob) <span class="op">/</span> <span class="dv">2</span>])</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>pi <span class="op">=</span> mean_q[<span class="st">"prior"</span>] <span class="op">+</span> std_q <span class="op">*</span> z</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"5.5%, 94.5% </span><span class="ch">\n</span><span class="sc">{:.2}</span><span class="st">, </span><span class="sc">{:.2}</span><span class="st">"</span>.<span class="bu">format</span>(pi[<span class="dv">0</span>], pi[<span class="dv">1</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5.5%, 94.5% 
+0.42, 0.58</code></pre>
+</div>
+</div>
+</section>
+<section id="code-2.7" class="level2">
+<h2 class="anchored" data-anchor-id="code-2.7">Code 2.7</h2>
+<div class="cell" data-outputid="c7fbc12b-5e2e-404d-9509-d050cd62d1d3" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>w, n <span class="op">=</span> <span class="dv">6</span>, <span class="dv">9</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x, stats.beta.pdf(x , w<span class="op">+</span><span class="dv">1</span>, n<span class="op">-</span>w<span class="op">+</span><span class="dv">1</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'True posterior'</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># quadratic approximation</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x, stats.norm.pdf(x, mean_q[<span class="st">'prior'</span>], std_q),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>         label<span class="op">=</span><span class="st">'Quadratic approximation'</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">0</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'n = </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(n), fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Proportion water'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Density'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)<span class="op">;</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#TODO: something's wrong here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="chapter_02_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
