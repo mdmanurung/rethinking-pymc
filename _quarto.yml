@@ -14,10 +14,10 @@ website:
     style: "floating"
     search: true
     contents:
-      - section: "Chapters"
-        contents: chapters/*.ipynb
+      - section: Chapters
+        contents: chapters/*
       - section: "Exercises"
-        contents: exercises/*.ipynb
+        contents: exercises/*
     tools:
       - icon: github
         menu: 
