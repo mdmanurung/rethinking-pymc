@@ -399,6 +399,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="m3">2M3</h3>
 <p>Suppose there are two globes, one for Earth and one for Mars. The Earth globe is 70% covered in water. The Mars globe is 100% land. Further suppose that one of these globes—you don’t know which—was tossed in the air and produced a “land” observation. Assume that each globe was equally likely to be tossed. Show that the posterior probability that the globe was the Earth, conditional on seeing “land” (Pr(Earth|land)), is 0.23.</p>
 <p><strong>Answer</strong>:</p>
+<ul>
+<li><span class="math inline">\(P(land|Earth) = 1 - 0.7 = 0.3\)</span></li>
+<li><span class="math inline">\(P(land|Mars) = 1\)</span></li>
+<li><span class="math inline">\(P(Earth) = P(Mars) = 0.5\)</span></li>
+</ul>
+<p>As we want to know <span class="math inline">\(P(Earth|land)\)</span>, then:</p>
+<p><span class="math display">\[
+P(Earth|land) = \frac{P(land|Earth)~P(Earth)}{P(land)}
+\]</span></p>
+<p>We need to get <span class="math inline">\(P(land)\)</span> first, which we can calculate in the following way:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(land) &amp;= P(land|Earth)~P(Earth)+P(land|Mars)~P(Mars)\\
+        &amp;= 0.3 * 0.5 + 1 * 0.5\\
+        &amp;= 0.65
+\end{aligned}
+\]</span></p>
+<p>We plug the number to the Bayes Theorem equation:</p>
+<p><span class="math display">\[P(Earth|land) = \frac{0.3*0.5}{0.65} = 0.23\]</span></p>
 </section>
 <section id="m4" class="level3">
 <h3 class="anchored" data-anchor-id="m4">2M4</h3>
